@@ -2,21 +2,12 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 export const ContadorScreen = () => {
-  const [contador, setContador] = useState(10);
+const [contador, setContador] = useState(10);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        paddingHorizontal: 10,
-      }}>
+    <View style={styles.containers}>
       <Text
-        style={{
-          textAlign: 'center',
-          fontSize: 40,
-          top: -15,
-        }}>
+        style={styles.texto}>
         Contador: {contador}
       </Text>
 
@@ -30,10 +21,20 @@ export const ContadorScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  containers: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+  },
+  texto: {
+    textAlign: 'center',
+    fontSize: 40,
+    top: -15,
+  },
   button: {
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
     padding: 10,
-    borderRadius: 100
-  }, 
+    borderRadius: 100,
+  },
 });
