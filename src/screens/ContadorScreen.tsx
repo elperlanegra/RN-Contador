@@ -14,6 +14,7 @@ export const ContadorScreen = () => {
         onPress={() => setContador(contador + 1)}>
         <Text>Press Here</Text>
       </TouchableOpacity>
+      
     </View>
   );
 };
