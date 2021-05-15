@@ -10,14 +10,14 @@ export const ContadorScreen = () => {
       <Text style={styles.texto}>Contador: {contador}</Text>
 
       {/* Botton que incrementa en 1 el contador */}
-      <Fab title="+1" onPress={() => setContador(contador + 1)} />
-
-      {/* Botton que decrementa en 1 el contador */}
       <Fab 
         title="-1" 
         position="bl"
         onPress={() => setContador(contador - 1)} 
         />
+
+      {/* Botton que decrementa en 1 el contador */}
+      <Fab title="+1" onPress={() => setContador(contador + 1)} />
 
     </View>
   );

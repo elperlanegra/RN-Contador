@@ -1,50 +1,74 @@
-import React from 'react'
-import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
-
+import React from 'react';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableNativeFeedback,
+} from 'react-native';
 
 interface Props {
-    title: string,
-    position?: 'br' | 'bl',
-    onPress: () => void;
+  title: string;
+  position?: 'br' | 'bl';
+  onPress: () => void;
 }
 
-export const Fab = ({title, onPress, position= 'br'}: Props ) => {
+export const Fab = ({title, onPress, position = 'br'}: Props) => {
+  return (
+    <View
+      style={[
+        styles.fabLocation,
+        position === 'bl' ? styles.left : styles.right,
+      ]}>
+      <TouchableNativeFeedback // Esto es para crear los botones
+        // Formas de hacer estilos condicionales
 
-    return (
-        <TouchableOpacity
-            style={styles.fabLocationsBR} // Esto es para crear los botones
-            onPress={onPress}>
-            <View style={styles.fab}>
-                <Text style={styles.fabText}> {title} </Text>
-            </View>
-      </TouchableOpacity>
-    )
-}
+        // (position === 'bl')
+        // ? styles.fabLocationsBL
+        // : styles.fabLocationsBR
+        onPress={onPress}
+        background={TouchableNativeFeedback.Ripple('#28425b', false, 30)}
+        >
+        <View style={styles.fab}>
+          <Text style={styles.fabText}> {title} </Text>
+        </View>
+      </TouchableNativeFeedback>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    fabLocationsBR: {
-        position: 'absolute',
-        bottom: 25,
-        right: 25,
-      },
-    
-      fabLocationsBL: {
-        position: 'absolute',
-        bottom: 25,
-        left: 25,
-      },
-    
-      fab: {
-        backgroundColor: '#5856D6',
-        width: 60,
-        height: 60,
-        borderRadius: 100,
-        justifyContent: 'center',
-      },
-      fabText: {
-        color: 'white',
-        fontSize: 25,
-        fontWeight: 'bold',
-        alignSelf: 'center',
-      },
-})
+  fabLocation: {
+    position: 'absolute',
+    bottom: 25,
+  },
+
+  right: {
+    right: 25,
+  },
+  left: {
+    left: 25,
+  },
+
+  fab: {
+    backgroundColor: '#5856D6',
+    width: 60,
+    height: 60,
+    borderRadius: 100,
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
+
+    elevation: 8,
+  },
+  fabText: {
+    color: 'white',
+    fontSize: 25,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+  },
+});
