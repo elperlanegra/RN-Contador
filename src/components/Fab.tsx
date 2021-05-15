@@ -3,17 +3,19 @@ import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 
 
 interface Props {
-    title: string
+    title: string,
+    position?: 'br' | 'bl',
+    onPress: () => void;
 }
 
-export const Fab = ( props: Props ) => {
+export const Fab = ({title, onPress, position= 'br'}: Props ) => {
 
     return (
         <TouchableOpacity
             style={styles.fabLocationsBR} // Esto es para crear los botones
-            onPress={() => console.log(props.title)}>
+            onPress={onPress}>
             <View style={styles.fab}>
-                <Text style={styles.fabText}> +1 </Text>
+                <Text style={styles.fabText}> {title} </Text>
             </View>
       </TouchableOpacity>
     )

@@ -3,26 +3,22 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Fab} from '../components/Fab';
 
 export const ContadorScreen = () => {
-  const [contador, setContador] = useState(0); // El useSate del contador
+  const [contador, setContador] = useState(10); // El useSate del contador
 
   return (
     <View style={styles.container}>
       <Text style={styles.texto}>Contador: {contador}</Text>
 
       {/* Botton que incrementa en 1 el contador */}
-      <Fab 
-
-        title="-+"
-      />
+      <Fab title="+1" onPress={() => setContador(contador + 1)} />
 
       {/* Botton que decrementa en 1 el contador */}
-      {/* <TouchableOpacity
-        style={styles.fabLocationsBL} // Esto es para crear los botones
-        onPress={() => setContador(contador - 1)}>
-        <View style={styles.fab}>
-          <Text style={styles.fabText}>-1</Text>
-        </View>
-      </TouchableOpacity> */}
+      <Fab 
+        title="-1" 
+        position="bl"
+        onPress={() => setContador(contador - 1)} 
+        />
+
     </View>
   );
 };
