@@ -4,6 +4,8 @@ import {
   View,
   StyleSheet,
   TouchableNativeFeedback,
+  TouchableOpacity,
+  Platform,
 } from 'react-native';
 
 interface Props {
@@ -13,27 +15,41 @@ interface Props {
 }
 
 export const Fab = ({title, onPress, position = 'br'}: Props) => {
-  return (
-    <View
-      style={[
-        styles.fabLocation,
-        position === 'bl' ? styles.left : styles.right,
-      ]}>
-      <TouchableNativeFeedback // Esto es para crear los botones
-        // Formas de hacer estilos condicionales
-
-        // (position === 'bl')
-        // ? styles.fabLocationsBL
-        // : styles.fabLocationsBR
+  const ios = () => {
+    return (
+      <TouchableOpacity
         onPress={onPress}
-        background={TouchableNativeFeedback.Ripple('#28425b', false, 30)}
-        >
+        activeOpacity={0.75}
+        style={[
+          styles.fabLocation,
+          position === 'bl' ? styles.left : styles.right,
+        ]}>
         <View style={styles.fab}>
           <Text style={styles.fabText}> {title} </Text>
         </View>
-      </TouchableNativeFeedback>
-    </View>
-  );
+      </TouchableOpacity>
+    );
+  };
+  const android = () => {
+    return (
+      <View
+        style={[
+          styles.fabLocation,
+          position === 'bl' ? styles.left : styles.right,
+        ]}>
+        <TouchableNativeFeedback // Esto es para crear los botones
+          // Formas de hacer estilos condicionales
+          onPress={onPress}
+          background={TouchableNativeFeedback.Ripple('#28425b', false, 30)}>
+          <View style={styles.fab}>
+            <Text style={styles.fabText}> {title} </Text>
+          </View>
+        </TouchableNativeFeedback>
+      </View>
+    );
+  };
+
+  return Platform.OS === 'ios' ? ios() : android();
 };
 
 const styles = StyleSheet.create({
