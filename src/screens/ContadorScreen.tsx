@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Fab} from '../components/Fab';
 
 export const ContadorScreen = () => {
-  const [contador, setContador] = useState(10); // El useSate del contador
+  const [contador, setContador] = useState(0); // El useSate del contador
 
   return (
     <View style={styles.container}>
